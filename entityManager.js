@@ -5,7 +5,8 @@ var entityManager =
 	updateRadius : 500,
 	player : undefined, 
 	enemies : [],
-	obstacles: []
+	obstacles : [],
+	bullets : []
 }
 
 entityManager.setPlayer = function(descr)
@@ -36,7 +37,7 @@ entityManager.update = function(du)
 		if( distSq( this.obstacles[i].cx,  this.obstacles[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
 		{
 			var status = this.obstacles[i].update(du);
-			if(status==="die") {this.obstacles.splice(i,1);}
+			if(status==="die") {this.obstacles.splice(i--,1);}
 		}
 	}
 	for(var i=0; i<this.enemies.length; i++)
