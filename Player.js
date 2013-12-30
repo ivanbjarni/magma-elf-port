@@ -48,7 +48,7 @@ Player.prototype.updateSlot = function(x)
 {
 	this.slotSelected = 1 + myMod(this.slotSelected-1+x,10);
 	for(var i=1;i<11;i++)
-	{ if(g_keys[i]) { this.slotSelected=i;}}
+	{ if(g_keys[i+47]) { this.slotSelected=i-1;}}
 }
 
 Player.prototype.setVelocity = function(du)
