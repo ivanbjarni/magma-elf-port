@@ -24,6 +24,11 @@ entityManager.addEnemy = function(descr)
 	this.enemies[this.enemies.length]=new Enemy(descr);
 }
 
+entityManager.addBullet = function(descr)
+{
+	this.bullets[this.bullets.length]=new Bullet(descr);
+}
+
 entityManager.update = function(du) 
 {
 	if(this.player !== undefined)
