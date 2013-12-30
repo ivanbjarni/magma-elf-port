@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="UTF-8">
-    <title>PONG!</title>
+    <title>Scroll little one, Scroll!</title>
   </head>
   <body>
 
@@ -14,13 +14,17 @@
     <div id="output"></div>
 
     <script src="utils.js"></script>
+    <script src="heightmap.js"></script>
+    <script src="imagesPreload.js"></script>
+    <script src="Sprite.js"></script>
     <script src="g_keys.js"></script>
-    <script src="Paddle.js"></script>
-    <script src="g_ball.js"></script>
+    <script src="Player.js"></script>
+    <script src="Obstacle.js"></script>
+    <script src="entityManager.js"></script>
     <script src="g_main.js"></script>
     <script src="update.js"></script>
     <script src="render.js"></script>
-    <script src="PONG.js"></script>
+    <script src="scroller.js"></script>
 
   </body>
 </html>
