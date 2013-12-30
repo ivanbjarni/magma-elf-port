@@ -1,18 +1,3 @@
-// "Crappy PONG" -- step by step
-//
-// Step 13: Simplify
-/*
-
-Supporting timer-events (via setInterval) *and* frame-events (via requestAnimationFrame)
-adds significant complexity to the the code.
-
-I can simplify things a little by focusing on the latter case only (which is the
-superior mechanism of the two), so let's try doing that...
-
-The "MAINLOOP" code, inside g_main, is much simplified as a result.
-
-*/
-
 "use strict";
 
 /* jshint browser: true, devel: true, globalstrict: true */
@@ -20,18 +5,11 @@ The "MAINLOOP" code, inside g_main, is much simplified as a result.
 var g_canvas = document.getElementById("myCanvas");
 var g_ctx = g_canvas.getContext("2d");
 
-/*
-0        1         2         3         4         5         6         7         8         9
-123456789012345678901234567890123456789012345678901234567890123456789012345678901234567890
-*/
-
 // ============
 // Player STUFF
 // ============
 var g_sprites = {};
 var initStart = function (){
-
-// Player 1
 
 var KEY_W = 'W'.charCodeAt(0);
 var KEY_S = 'S'.charCodeAt(0);
@@ -52,9 +30,9 @@ entityManager.setPlayer({
 
 for(var i=0;i<225;i++)
 {
-    entityManager.add(new Obstacle({
+    entityManager.addObstacle(new Obstacle({
         cx : Math.floor(i/15)*80-600,
-        cy : (i%15)*80-600,
+        cy : (i%15)*80-1200,
 
         halfHeight : 12,
         halfWidth : 12

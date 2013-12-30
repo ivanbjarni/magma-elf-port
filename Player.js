@@ -1,13 +1,9 @@
-// A generic constructor which accepts an arbitrary descriptor object
 function Player(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
     console.log("made player");
 }
-
-// Add these properties to the prototype, where they will server as
-// shared defaults, in the absence of an instance-specific overrides.
 
 Player.prototype.halfWidth = 12;
 Player.prototype.halfHeight = 12;
