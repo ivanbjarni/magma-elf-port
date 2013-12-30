@@ -12,7 +12,7 @@ heightmap.initCurve=function()
 	{
 		if(x<50){return 20;}
 		if(x<100){return 0;}
-		if(x<180){return 40;}
+		if(x<180){return -800;}
 		return -20;
 	}
 };
@@ -24,19 +24,19 @@ heightmap.render = function(ctx,dx)
 	var c = g_canvas.width/2;
 	var ch = g_canvas.height/2;
 	var xx=-dx;
-	var steps= c*2/dx+2;
+	var steps= c*2/dx;
 
 	ctx.save();
 
 	ctx.beginPath();
-	ctx.moveTo(-dx,ch*2.1);
-	for (var i = -1; i < steps-1; i++) 
+	ctx.moveTo(-10*dx,ch*2.1);
+	for (var i = -10; i < steps+10; i++) 
 	{
 		xx=i*dx;
 		yy=this.curve(xx-c+vx)-vy+ch;
 		ctx.lineTo(xx,yy);
 	}
-	ctx.lineTo(c*2+dx,ch*2.1);
+	ctx.lineTo(c*2+10*dx,ch*2.1);
 	ctx.closePath();
 
 	ctx.fillStyle = this.fillCol;
