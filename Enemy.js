@@ -14,6 +14,9 @@ Enemy.prototype.halfHeight = 12;
 Enemy.prototype.velX = 0;
 Enemy.prototype.velY = 0;
 Enemy.prototype.speed = 2;
+Enemy.prototype.isFlying = false;
+Enemy.prototype.hp = 100;
+Enemy.prototype.scale=1;
 
 Enemy.prototype.update = function (du) {
     this.setVelocity(du);
@@ -37,12 +40,16 @@ Enemy.prototype.update = function (du) {
 	{ this.velY=0;}
 	else
 	{ this.velY=0; }
+
+	if(this.velX<0){ this.scale = 1; }
+	else { this.scale = -1; }
 };
 
 Enemy.prototype.setVelocity = function(du)
 {
 	this.velX = -sgn(this.cx-entityManager.player.cx)*du*this.speed;
- 	this.velY += 0.3*du;
+ 	if(this.isFlying){ this.velY = -sgn(this.cy-entityManager.player.cy)*du*this.speed;}
+ 	else{ this.velY += 0.3*du; }
 	
 }
 
@@ -74,7 +81,7 @@ Enemy.prototype.render = function (ctx,offsetX,offsetY) {
     var rx = Math.floor(this.cx - offsetX);
     var ry = Math.floor(this.cy - offsetY);
 
-    this.sprite.drawCentredAt(ctx, rx ,ry);
+    this.sprite.drawCentredAt(ctx, rx ,ry,0,this.scale);
 };
 
 Enemy.prototype.getX = function()

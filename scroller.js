@@ -41,7 +41,9 @@ for(var i=0;i<225;i++)
     });
 }
 
-entityManager.addEnemy({cx:0, cy:0});
+entityManager.addEnemy({cx:-150, cy:0});
+entityManager.addEnemy({cx:-800, cy:-250});
+entityManager.addEnemy({cx:150, cy:-840, isFlying: true, sprite: g_sprites.enemy2});
 
 heightmap.initCurve();
 }
@@ -104,7 +106,8 @@ function requestPreloads() {
         block1 : "images/block.png",
         block2 : "images/block2.png",
         player1 : "images/player1.png",
-        enemy1 : "images/enemy1.png"
+        enemy1 : "images/enemy1.png",
+        enemy2 : "images/enemy2.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -117,6 +120,7 @@ function preloadDone() {
     g_sprites.block1  = new Sprite(g_images.block1);
     g_sprites.block2  = new Sprite(g_images.block2);
     g_sprites.enemy1  = new Sprite(g_images.enemy1);
+    g_sprites.enemy2  = new Sprite(g_images.enemy2);
     initStart();
     g_main.init();
 }

@@ -29,6 +29,7 @@ Player.prototype.update = function (du) {
 
     var obs = entityManager.getObstacles();
 
+    this.updateSlot(0);
 
     if(!this.collides(obs,nextX,this.cy))
     { this.cx=nextX; }
@@ -42,6 +43,13 @@ Player.prototype.update = function (du) {
 	else
 	{ this.velY=0; }
 };
+
+Player.prototype.updateSlot = function(x)
+{
+	this.slotSelected = 1 + myMod(this.slotSelected-1+x,10);
+	for(var i=1;i<11;i++)
+	{ if(g_keys[i]) { this.slotSelected=i;}}
+}
 
 Player.prototype.setVelocity = function(du)
 {
@@ -89,9 +97,12 @@ Player.prototype.renderUI = function(ctx)
 
 	ctx.lineWidth = 2;
 
-	for(var i=0; i<10; i++)
+	for(var i=1; i<11; i++)
 	{
-		ctx.strokeRect(g_canvas.width/2-28*5+i*28,g_canvas.height-24,24,24);
+		if(this.slotSelected===i) { ctx.strokeStyle="white"; }
+		else { ctx.strokeStyle ="black"; }
+
+		ctx.strokeRect(g_canvas.width/2-28*5+i*28,g_canvas.height-27,24,24);
 	}
 
 	ctx.restore();

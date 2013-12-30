@@ -10,6 +10,12 @@ heightmap.initCurve=function()
 {
 	this.curve=function(x)
 	{
+		if(x<-700){return -230;}
+		if(x<-600){return -180;}
+		if(x<-500){return -130;}
+		if(x<-400){return -80;}
+		if(x<-300){return -30;}
+		if(x<-50){return 30;}
 		if(x<50){return 20;}
 		if(x<100){return 0;}
 		if(x<180){return -800;}
