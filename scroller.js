@@ -30,13 +30,13 @@ entityManager.setPlayer({
 
 for(var i=0;i<225;i++)
 {
-    entityManager.addObstacle(new Obstacle({
+    entityManager.addObstacle({
         cx : Math.floor(i/15)*80-600,
         cy : (i%15)*80-1200,
 
         halfHeight : 12,
         halfWidth : 12
-    }));
+    });
 }
 heightmap.initCurve();
 }

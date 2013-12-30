@@ -13,9 +13,14 @@ entityManager.setPlayer = function(descr)
 	this.player = new Player(descr);
 }
 
-entityManager.addObstacle = function(obj)
+entityManager.addObstacle = function(descr)
 {
-	this.obstacles[this.obstacles.length]=obj;
+	this.obstacles[this.obstacles.length]=new Obstacle(descr);
+}
+
+entityManager.addEnemy = function(descr)
+{
+	this.enemies[this.enemies.length]=new Enemy(descr);
 }
 
 entityManager.update = function(du) 
