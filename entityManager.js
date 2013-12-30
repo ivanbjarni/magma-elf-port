@@ -39,6 +39,14 @@ entityManager.update = function(du)
 			if(status==="die") {this.obstacles.splice(i,1);}
 		}
 	}
+	for(var i=0; i<this.enemies.length; i++)
+	{
+		if( distSq( this.enemies[i].cx,  this.enemies[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
+		{
+			var status = this.enemies[i].update(du);
+			if(status==="die") {this.enemies.splice(i,1);}
+		}
+	}
 
 	this.player.update(du);
 };
@@ -50,6 +58,13 @@ entityManager.render = function(ctx)
 		if( distSq( this.obstacles[i].cx,  this.obstacles[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
 		{
 			this.obstacles[i].render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);
+		}
+	}
+	for(var i=0; i<this.enemies.length; i++)
+	{
+		if( distSq( this.enemies[i].cx,  this.enemies[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
+		{
+			this.enemies[i].render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);
 		}
 	}
 	this.player.render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);

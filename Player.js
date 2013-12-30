@@ -51,7 +51,7 @@ Player.prototype.setVelocity = function(du)
     if (g_keys[this.GO_LEFT]) 
      { this.velX = -this.speed * du; this.scaleX=1;}
 
- 	this.velY += 0.3;
+ 	this.velY += 0.3*du;
 }
 
 Player.prototype.collides = function(array,nextX,nextY)

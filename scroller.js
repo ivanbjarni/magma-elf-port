@@ -38,6 +38,9 @@ for(var i=0;i<225;i++)
         halfWidth : 12
     });
 }
+
+entityManager.addEnemy({cx:0, cy:0});
+
 heightmap.initCurve();
 }
 // =============
@@ -97,7 +100,8 @@ function requestPreloads() {
     var requiredImages = {
         block1 : "images/block.png",
         block2 : "images/block2.png",
-        player1 : "images/player1.png"
+        player1 : "images/player1.png",
+        enemy1 : "images/enemy1.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -109,6 +113,7 @@ function preloadDone() {
     g_sprites.player1  = new Sprite(g_images.player1);
     g_sprites.block1  = new Sprite(g_images.block1);
     g_sprites.block2  = new Sprite(g_images.block2);
+    g_sprites.enemy1  = new Sprite(g_images.enemy1);
     initStart();
     g_main.init();
 }
