@@ -1,21 +1,17 @@
 // A generic constructor which accepts an arbitrary descriptor object
-function Enemy(descr) {
+function Pickup(descr) {
     for (var property in descr) {
         this[property] = descr[property];
     }
-    this.sprite =  this.sprite || g_sprites.enemy1;
+    this.sprite =  this.sprite || g_sprites.imgerr;
 }
 
-Enemy.prototype.halfWidth = 12;
-Enemy.prototype.halfHeight = 12;
-Enemy.prototype.velX = 0;
-Enemy.prototype.velY = 0;
-Enemy.prototype.speed = 2;
-Enemy.prototype.isFlying = false;
-Enemy.prototype.hp = 100;
-Enemy.prototype.scale=1;
+Pickup.prototype.halfWidth = 12;
+Pickup.prototype.halfHeight = 12;
+Pickup.prototype.velX = 0;
+Pickup.prototype.velY = 0;
 
-Enemy.prototype.update = function (du) {
+Pickup.prototype.update = function (du) {
     this.setVelocity(du);
 
     var prevX = this.cx;
@@ -37,20 +33,14 @@ Enemy.prototype.update = function (du) {
 	{ this.velY=0;}
 	else
 	{ this.velY=0; }
-
-	if(this.velX<0){ this.scale = 1; }
-	else { this.scale = -1; }
 };
 
-Enemy.prototype.setVelocity = function(du)
+Pickup.prototype.setVelocity = function(du)
 {
-	this.velX = -sgn(this.cx-entityManager.player.cx)*du*this.speed;
- 	if(this.isFlying){ this.velY = -sgn(this.cy-entityManager.player.cy)*du*this.speed;}
- 	else{ this.velY += 0.3*du; }
-	
+	this.velY += 0.3*du; 
 }
 
-Enemy.prototype.collides = function(array,nextX,nextY)
+Pickup.prototype.collides = function(array,nextX,nextY)
 {
 	for(var i=0; i<array.length;i++)
 	{
@@ -63,7 +53,7 @@ Enemy.prototype.collides = function(array,nextX,nextY)
 	return 0;
 }
 
-Enemy.prototype.collidesWith = function(obj,nextX,nextY)
+Pickup.prototype.collidesWith = function(obj,nextX,nextY)
 {
 	if( (Math.abs(nextX-obj.cx)<this.halfWidth+obj.halfWidth) &&
 		(Math.abs(nextY-obj.cy)<this.halfHeight+obj.halfHeight) )
@@ -74,14 +64,14 @@ Enemy.prototype.collidesWith = function(obj,nextX,nextY)
 	return 0;
 }
 
-Enemy.prototype.render = function (ctx,offsetX,offsetY) {
+Pickup.prototype.render = function (ctx,offsetX,offsetY) {
     var rx = Math.floor(this.cx - offsetX);
     var ry = Math.floor(this.cy - offsetY);
 
     this.sprite.drawCentredAt(ctx, rx ,ry,0,this.scale);
 };
 
-Enemy.prototype.getX = function()
+Pickup.prototype.getX = function()
 {return this.cx;}
-Enemy.prototype.getY = function()
+Pickup.prototype.getY = function()
 {return this.cy;}

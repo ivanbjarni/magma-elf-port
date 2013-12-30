@@ -107,7 +107,8 @@ function requestPreloads() {
         block2 : "images/block2.png",
         player1 : "images/player1.png",
         enemy1 : "images/enemy1.png",
-        enemy2 : "images/enemy2.png"
+        enemy2 : "images/enemy2.png",
+        imgerr : "images/error.png"
     };
 
     imagesPreload(requiredImages, g_images, preloadDone);
@@ -121,6 +122,7 @@ function preloadDone() {
     g_sprites.block2  = new Sprite(g_images.block2);
     g_sprites.enemy1  = new Sprite(g_images.enemy1);
     g_sprites.enemy2  = new Sprite(g_images.enemy2);
+    g_sprites.imgerr  = new Sprite(g_images.imgerr);
     initStart();
     g_main.init();
 }

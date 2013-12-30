@@ -6,8 +6,6 @@ function Obstacle(descr) {
     this.sprite =  this.sprite || g_sprites.block1;
 }
 
-// Add these properties to the prototype, where they will server as
-// shared defaults, in the absence of an instance-specific overrides.
 
 Obstacle.prototype.halfWidth = 12;
 Obstacle.prototype.halfHeight = 12;
