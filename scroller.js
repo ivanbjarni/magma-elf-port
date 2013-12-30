@@ -88,8 +88,9 @@ function updateSimulation(du)
 
 function renderSimulation(ctx) {
 
-    entityManager.render(ctx);
     heightmap.render(ctx,1);
+    entityManager.render(ctx);
+
 }
 
 // Kick it off

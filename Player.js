@@ -89,7 +89,7 @@ Player.prototype.renderUI = function(ctx)
 		ctx.strokeRect(g_canvas.width/2-28*5+i*28,g_canvas.height-24,24,24);
 	}
 
-	ctx.reload();
+	ctx.restore();
 };
 
 Player.prototype.render = function (ctx,offsetX,offsetY) {
