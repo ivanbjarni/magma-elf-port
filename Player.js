@@ -13,9 +13,14 @@ Player.prototype.velY = 0;
 Player.prototype.hasJump = 1;
 Player.prototype.jumpSpeed = 7;
 Player.prototype.scaleX = 1;
+Player.prototype.slots = [];
+Player.prototype.slotSelected = 1;
 
 Player.prototype.update = function (du) {
     this.setVelocity(du);
+
+    if(this.USE) 
+    //{ this.slots[this.slotSelected].useItem(this);}
 
     var prevX = this.cx;
     var prevY = this.cy;
@@ -104,3 +109,11 @@ Player.prototype.getX = function()
 {return this.cx;}
 Player.prototype.getY = function()
 {return this.cy;}
+
+Player.prototype.useItem = function(nr){
+	entityManager.addBullet({
+    		cx : this.cx,
+    		cy : this.cy,
+    		type : slots[this.slotSelected]
+    });
+}

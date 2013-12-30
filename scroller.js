@@ -15,6 +15,7 @@ var KEY_W = 'W'.charCodeAt(0);
 var KEY_S = 'S'.charCodeAt(0);
 var KEY_D = 'D'.charCodeAt(0);
 var KEY_A = 'A'.charCodeAt(0);
+var KEY_SPACE = 32;
 
 entityManager.setPlayer({
     cx : 0,
@@ -24,7 +25,8 @@ entityManager.setPlayer({
     GO_UP   : KEY_W,
     GO_DOWN : KEY_S,
     GO_LEFT   : KEY_A,
-    GO_RIGHT : KEY_D
+    GO_RIGHT : KEY_D,
+    USE : KEY_SPACE
 });
 
 
