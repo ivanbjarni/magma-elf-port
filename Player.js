@@ -83,11 +83,26 @@ Player.prototype.collidesWith = function(obj,nextX,nextY)
 	return 0;
 }
 
+Player.prototype.renderUI = function(ctx)
+{
+	ctx.save();
+
+	ctx.lineWidth = 2;
+
+	for(var i=0; i<10; i++)
+	{
+		ctx.strokeRect(g_canvas.width/2-28*5+i*28,g_canvas.height-24,24,24);
+	}
+
+	ctx.reload();
+};
+
 Player.prototype.render = function (ctx,offsetX,offsetY) {
 	var rx = Math.floor(this.cx - offsetX);
 	var ry = Math.floor(this.cy - offsetY);
 
 	this.sprite.drawCentredAt(ctx, rx ,ry,0,this.scaleX);
+	this.renderUI(ctx);
 };
 
 Player.prototype.getX = function()

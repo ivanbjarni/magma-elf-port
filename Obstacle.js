@@ -11,6 +11,7 @@ function Obstacle(descr) {
 
 Obstacle.prototype.halfWidth = 12;
 Obstacle.prototype.halfHeight = 12;
+Obstacle.prototype.isDoor = false;
 
 Obstacle.prototype.update = function (du) {
     return "obs";
