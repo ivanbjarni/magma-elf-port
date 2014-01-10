@@ -19,8 +19,9 @@ Player.prototype.slotSelected = 1;
 Player.prototype.update = function (du) {
     this.setVelocity(du);
 
-    if(this.USE) 
+    //if(this.USE) 
     //{ this.slots[this.slotSelected].useItem(this);}
+
 
     var prevX = this.cx;
     var prevY = this.cy;
@@ -49,6 +50,13 @@ Player.prototype.updateSlot = function(x)
 	this.slotSelected = 1 + myMod(this.slotSelected-1+x,10);
 	for(var i=1;i<11;i++)
 	{ if(g_keys[i+47]) { this.slotSelected=i-1;}}
+}
+
+Player.prototype.shoot = function(vx,vy)
+{ 
+	dir = Math.atan((this.cy-vy)/(this.cx-vx));
+
+	entityManager.addBullet( {cx:this.cx, cy: this.cy, velX: -5*Math.cos(dir)*sgn(this.cx-vx), velY : -5*Math.sin(dir)*sgn(this.cx-vx) } );	
 }
 
 Player.prototype.setVelocity = function(du)
