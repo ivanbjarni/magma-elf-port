@@ -15,6 +15,7 @@ Player.prototype.jumpSpeed = 7;
 Player.prototype.scaleX = 1;
 Player.prototype.slots = [];
 Player.prototype.slotSelected = 1;
+Player.prototype.maxHeightDiff = 7;
 
 Player.prototype.update = function (du) {
     this.setVelocity(du);
@@ -33,7 +34,11 @@ Player.prototype.update = function (du) {
     this.updateSlot(0);
 
     if(!this.collides(obs,nextX,this.cy))
-    { this.cx=nextX; }
+    	this.cx=nextX;
+    else
+    	for(var p=1; p<this.maxHeightDiff; p++)
+    		if(!this.collides(obs,nextX,this.cy-p)&&this.hasJump)
+    		{ this.cx=nextX; this.cy=this.cy-p; break;}
 
 	var vertColl = this.collides(obs,this.cx,nextY);
 

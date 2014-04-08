@@ -1,0 +1,1 @@
+var distToStopFollow = 3;

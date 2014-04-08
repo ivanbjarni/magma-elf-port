@@ -12,8 +12,10 @@ Enemy.prototype.velX = 0;
 Enemy.prototype.velY = 0;
 Enemy.prototype.speed = 2;
 Enemy.prototype.isFlying = false;
+Enemy.prototype.behaviour = "following"; //can also be backAndForth
 Enemy.prototype.hp = 100;
 Enemy.prototype.scale=1;
+Enemy.prototype.maxHeightDiff = 7;
 
 Enemy.prototype.update = function (du) {
     this.setVelocity(du);
@@ -27,7 +29,11 @@ Enemy.prototype.update = function (du) {
 
 
     if(!this.collides(obs,nextX,this.cy))
-    { this.cx=nextX; }
+    	this.cx=nextX;
+    else
+    	for(var p=1; p<this.maxHeightDiff; p++)
+    		if(!this.collides(obs,nextX,this.cy-p))
+    		{ this.cx=nextX; this.cy=this.cy-p; break;}
 
 	var vertColl = this.collides(obs,this.cx,nextY);
 
@@ -44,10 +50,23 @@ Enemy.prototype.update = function (du) {
 
 Enemy.prototype.setVelocity = function(du)
 {
-	this.velX = -sgn(this.cx-entityManager.player.cx)*du*this.speed;
- 	if(this.isFlying){ this.velY = -sgn(this.cy-entityManager.player.cy)*du*this.speed;}
- 	else{ this.velY += 0.3*du; }
-	
+	//Following begins
+	if(this.behaviour=="following")
+	{
+		this.velX = -sgn(this.cx-entityManager.player.cx)*du*this.speed;
+		if(Math.abs(this.cx-entityManager.player.cx)<distToStopFollow)
+			this.velX = 0;
+	 	if(this.isFlying)
+	 	{ 
+	 		this.velY = -sgn(this.cy-entityManager.player.cy)*du*this.speed;
+	 		if(Math.abs(this.cy-entityManager.player.cy)<distToStopFollow)
+				this.velY = 0;
+	 	}
+	 	else{ this.velY += 0.3*du; }
+	}
+	//Following ends
+	//Back and forth begins
+	//coming soon
 }
 
 Enemy.prototype.collides = function(array,nextX,nextY)

@@ -30,22 +30,11 @@ entityManager.setPlayer({
 });
 
 
-for(var i=0;i<225;i++)
-{
-    entityManager.addObstacle({
-        cx : Math.floor(i/15)*80-600,
-        cy : (i%15)*80-1200,
-
-        halfHeight : 12,
-        halfWidth : 12
-    });
-}
-
 entityManager.addEnemy({cx:-150, cy:0});
 entityManager.addEnemy({cx:-800, cy:-250});
 entityManager.addEnemy({cx:150, cy:-840, isFlying: true, sprite: g_sprites.enemy2});
 
-heightmap.initCurve();
+setLevel(1);
 }
 // =============
 // GATHER INPUTS
