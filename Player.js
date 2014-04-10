@@ -30,13 +30,16 @@ Player.prototype.update = function (du) {
     var nextY = prevY + this.velY;
 
     var obs = entityManager.getObstacles();
+    var enm = entityManager.getEnemies();
 
     this.updateSlot(0);
+
+    var heightDiff = this.maxHeightDiff*du;
 
     if(!this.collides(obs,nextX,this.cy))
     	this.cx=nextX;
     else
-    	for(var p=1; p<this.maxHeightDiff; p++)
+    	for(var p=1; p<heightDiff; p++)
     		if(!this.collides(obs,nextX,this.cy-p)&&this.hasJump)
     		{ this.cx=nextX; this.cy=this.cy-p; break;}
 

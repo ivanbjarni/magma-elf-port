@@ -62,6 +62,8 @@ entityManager.update = function(du)
 		}
 	}
 
+	particleManager.update(du);
+
 	this.player.update(du);
 };
 
@@ -88,8 +90,13 @@ entityManager.render = function(ctx)
 			this.bullets[i].render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);
 		}
 	}
+	particleManager.render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);
 	this.player.render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);
+
 };
 
 entityManager.getObstacles = function()
 {return this.obstacles;}
+
+entityManager.getEnemies = function()
+{return this.enemies;}

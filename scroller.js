@@ -62,6 +62,7 @@ function gatherInputs() {
 function updateSimulation(du) 
 {    
     entityManager.update(du);
+    //particleManager.update(du);
 }
 
 
