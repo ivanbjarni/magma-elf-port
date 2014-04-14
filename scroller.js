@@ -32,6 +32,7 @@ entityManager.setPlayer({
 
 entityManager.addEnemy({cx:-150, cy:0});
 entityManager.addEnemy({cx:-800, cy:-250});
+entityManager.addItem({cx:-800, cy:-350});
 entityManager.addEnemy({cx:150, cy:-840, isFlying: true, sprite: g_sprites.enemy2});
 
 setLevel(1);
@@ -98,6 +99,7 @@ function requestPreloads() {
         player1 : "images/player1.png",
         enemy1 : "images/enemy1.png",
         enemy2 : "images/enemy2.png",
+        gemerald : "images/gemerald.png",
         imgerr : "images/error.png"
     };
 
@@ -112,6 +114,7 @@ function preloadDone() {
     g_sprites.block2  = new Sprite(g_images.block2);
     g_sprites.enemy1  = new Sprite(g_images.enemy1);
     g_sprites.enemy2  = new Sprite(g_images.enemy2);
+    g_sprites.gemerald  = new Sprite(g_images.gemerald);
     g_sprites.imgerr  = new Sprite(g_images.imgerr);
     initStart();
     g_main.init();

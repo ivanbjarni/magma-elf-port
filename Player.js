@@ -36,19 +36,29 @@ Player.prototype.update = function (du) {
 
     var heightDiff = this.maxHeightDiff*du;
 
-    if(!this.collides(obs,nextX,this.cy))
+    //Check collisions with enemies
+    if(this.collides(enm,nextX,nextY,false))
+    	particleManager.addSParticle(this.cx,this.cy,"fire",4);
+
+    //Check if he can walk forward
+    if(!this.collides(obs,nextX,this.cy,true))
     	this.cx=nextX;
+    //also check some pixels upwards in case there is a slope, but only if he is walking
     else
     	for(var p=1; p<heightDiff; p++)
-    		if(!this.collides(obs,nextX,this.cy-p)&&this.hasJump)
+    		if(!this.collides(obs,nextX,this.cy-p,true)&&this.hasJump)
     		{ this.cx=nextX; this.cy=this.cy-p; break;}
 
-	var vertColl = this.collides(obs,this.cx,nextY);
+    //check if there is a vertical collision
+	var vertColl = this.collides(obs,this.cx,nextY,true);
 
+	//if there is nothing blocking his path, move vertically
 	if(!vertColl)
     { this.cy=nextY; }
+	//if he lands on top of a block
 	else if(vertColl===1)
 	{ this.velY=0; this.hasJump=true;}
+	//if he collides from beneath
 	else
 	{ this.velY=0; }
 };
@@ -83,7 +93,7 @@ Player.prototype.setVelocity = function(du)
  	this.velY += 0.3*du;
 }
 
-Player.prototype.collides = function(array,nextX,nextY)
+Player.prototype.collides = function(array,nextX,nextY,map)
 {
 	for(var i=0; i<array.length;i++)
 	{
@@ -91,8 +101,8 @@ Player.prototype.collides = function(array,nextX,nextY)
 		if(coll)
 			{return coll;}
 	}
-	if(heightmap.curve(nextX-this.halfWidth)<nextY+this.halfHeight){return 1;}
-	if(heightmap.curve(nextX+this.halfWidth)<nextY+this.halfHeight){return 1;}
+	if(heightmap.curve(nextX-this.halfWidth)<nextY+this.halfHeight&&map){return 1;}
+	if(heightmap.curve(nextX+this.halfWidth)<nextY+this.halfHeight&&map){return 1;}
 	return 0;
 }
 

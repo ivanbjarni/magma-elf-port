@@ -5,6 +5,7 @@ var entityManager =
 	updateRadius : 500,
 	player : undefined, 
 	enemies : [],
+	items : [],
 	obstacles : [],
 	bullets : []
 }
@@ -22,6 +23,11 @@ entityManager.addObstacle = function(descr)
 entityManager.addEnemy = function(descr)
 {
 	this.enemies[this.enemies.length]=new Enemy(descr);
+}
+
+entityManager.addItem = function(descr)
+{
+	this.items[this.items.length]=new Item(descr);
 }
 
 entityManager.addBullet = function(descr)
@@ -53,6 +59,14 @@ entityManager.update = function(du)
 			if(status==="die") {this.enemies.splice(i,1);}
 		}
 	}
+	for(var i=0; i<this.items.length; i++)
+	{
+		if( distSq( this.items[i].cx,  this.items[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
+		{
+			var status = this.items[i].update(du);
+			if(status==="die") {this.items.splice(i,1);}
+		}
+	}
 	for(var i=0; i<this.bullets.length; i++)
 	{
 		if( distSq( this.bullets[i].cx,  this.bullets[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
@@ -81,6 +95,13 @@ entityManager.render = function(ctx)
 		if( distSq( this.enemies[i].cx,  this.enemies[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
 		{
 			this.enemies[i].render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);
+		}
+	}
+	for(var i=0; i<this.items.length; i++)
+	{
+		if( distSq( this.items[i].cx,  this.items[i].cy,  this.viewX,  this.viewY) < Math.pow(this.updateRadius,2) )
+		{
+			this.items[i].render(ctx,this.viewX-g_canvas.width/2,this.viewY-g_canvas.height/2);
 		}
 	}
 	for(var i=0; i<this.bullets.length; i++)
