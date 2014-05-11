@@ -10,12 +10,13 @@ var g_ctx = g_canvas.getContext("2d");
 // ============
 var g_sprites = {};
 var initStart = function (){
-
 var KEY_W = 'W'.charCodeAt(0);
 var KEY_S = 'S'.charCodeAt(0);
 var KEY_D = 'D'.charCodeAt(0);
 var KEY_A = 'A'.charCodeAt(0);
 var KEY_SPACE = 32;
+
+entityManager.clear();
 
 entityManager.setPlayer({
     cx : 0,

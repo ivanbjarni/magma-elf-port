@@ -38,7 +38,8 @@ Player.prototype.update = function (du) {
 
     //Check collisions with enemies
     if(this.collides(enm,nextX,nextY,false))
-    	particleManager.addSParticle(this.cx,this.cy,"fire",4);
+    	initStart();
+    	//particleManager.addSParticle(this.cx,this.cy,"fire",4);
 
     //Check if he can walk forward
     if(!this.collides(obs,nextX,this.cy,true))

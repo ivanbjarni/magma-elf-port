@@ -121,3 +121,15 @@ entityManager.getObstacles = function()
 
 entityManager.getEnemies = function()
 {return this.enemies;}
+
+entityManager.clear = function()
+{
+	this.viewX = 100;
+	this.viewY = 100;
+	this.updateRadius = 500;
+	this.player = undefined;
+	this.enemies = [];
+	this.items = [];
+	this.obstacles = [];
+	this.bullets = [];
+}
